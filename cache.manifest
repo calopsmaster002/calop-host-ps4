@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# Host FW 13.52 - v1.0
+
+CACHE:
+index.html
+exploit1352.js
+goldhen.js
+
+NETWORK:
+*

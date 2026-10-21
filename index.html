@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" manifest="cache.manifest">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS4 Host Custom - FW 13.52</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1 { color: #58a6ff; margin-top: 20px; }
+        .status {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            padding: 12px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            color: #7ee787;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .btn-goldhen {
+            background: linear-gradient(135deg, #1f6beb, #238636);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4);
+            width: 90%;
+            max-width: 500px;
+        }
+        .btn-goldhen:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <h1>PS4 Host 13.52</h1>
+    <div id="status" class="status">Aguardando Ação...</div>
+
+    <!-- Botão que dispararia o exploit do 13.52 -->
+    <button class="btn-goldhen" onclick="runExploit()">Carregar GoldHEN 13.52</button>
+
+    <!-- Importa os scripts do Exploit do 13.52 -->
+    <script src="exploit1352.js"></script>
+    <script src="goldhen.js"></script>
+    
+    <script>
+        // Função que executa ao clicar no botão
+        function runExploit() {
+            document.getElementById('status').innerText = "Iniciando WebKit Exploit (13.52)...";
+            
+            // Aqui o JS chamaria a falha de memória do navegador
+            if (typeof triggerExploit === "function") {
+                triggerExploit(); 
+            } else {
+                alert("Erro ao carregar o script do exploit!");
+            }
+        }
+
+        // Sistema de Cache Offline
+        if (window.applicationCache) {
+            window.applicationCache.addEventListener('cached', function() {
+                document.getElementById('status').innerText = 'Host Salvo no Cache Offline!';
+            });
+            window.applicationCache.addEventListener('updateready', function() {
+                window.applicationCache.swapCache();
+                document.getElementById('status').innerText = 'Cache Atualizado!';
+            });
+        }
+    </script>
+</body>
+</html>
